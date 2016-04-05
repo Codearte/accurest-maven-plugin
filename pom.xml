@@ -156,7 +156,7 @@
 							<goal>updateVersion</goal>
 						</goals>
 						<configuration>
-							<releaseVersionFormat>{{ api_version }}-${revision}</releaseVersionFormat>
+							<releaseVersionFormat>{{ api_version }}-beta-${revision}</releaseVersionFormat>
 						</configuration>
 					</execution>
 					<execution>
@@ -178,6 +178,15 @@
 					<serverId>oss</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<pushChanges>false</pushChanges>
+					<localCheckout>true</localCheckout>
 				</configuration>
 			</plugin>
 		</plugins>
