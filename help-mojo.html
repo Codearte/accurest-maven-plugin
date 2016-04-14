@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Accurate Maven Plugin Project - 
-    accurest:run</title>
+    accurest:help</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -61,17 +61,24 @@
         
   
     <div class="section">
-<h2>accurest:run<a name="accurest:run"></a></h2>
+<h2>accurest:help<a name="accurest:help"></a></h2>
       
 <p><b>Full name</b>:</p>
       
-<p>io.codearte.accurest:accurest-maven-plugin:0.5.1:run</p>
+<p>io.codearte.accurest:accurest-maven-plugin:0.5.1:help</p>
       
 <p><b>Description</b>:</p>
       
-<div>(no description)</div>
+<div>Display help information on accurest-maven-plugin.<br />
+Call <tt>mvn accurest:help -Ddetail=true
+-Dgoal=&lt;goal-name&gt;</tt> to display parameter details.</div>
       
 <p><b>Attributes</b>:</p>
+      
+<ul>
+        
+<li>The goal is thread-safe and supports parallel builds.</li>
+      </ul>
       
 <div class="section">
 <h3>Optional Parameters<a name="Optional_Parameters"></a></h3>
@@ -91,46 +98,48 @@
           
 <tr class="b">
             
-<td><b><a href="#contractsDir">contractsDir</a></b></td>
+<td><b><a href="#detail">detail</a></b></td>
             
-<td><tt>File</tt></td>
+<td><tt>boolean</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>(no description)<br /><b>Default value is</b>: <tt>${basedir}</tt>.<br /><b>User property is</b>: <tt>contractsDir</tt>.</td>
+<td>If <tt>true</tt>, display all settable properties for each
+goal.<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>detail</tt>.</td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#maxPort">maxPort</a></b></td>
-            
-<td><tt>int</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>(no description)<br /><b>Default value is</b>: <tt>15000</tt>.<br /><b>User property is</b>: <tt>maxPort</tt>.</td>
-          </tr>
-          
-<tr class="b">
-            
-<td><b><a href="#minPort">minPort</a></b></td>
-            
-<td><tt>int</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>(no description)<br /><b>Default value is</b>: <tt>10000</tt>.<br /><b>User property is</b>: <tt>minPort</tt>.</td>
-          </tr>
-          
-<tr class="a">
-            
-<td><b><a href="#stubs">stubs</a></b></td>
+<td><b><a href="#goal">goal</a></b></td>
             
 <td><tt>String</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>(no description)<br /><b>User property is</b>: <tt>stubs</tt>.</td>
+<td>The name of the goal for which to show help. If unspecified, all
+goals will be displayed.<br /><b>User property is</b>: <tt>goal</tt>.</td>
+          </tr>
+          
+<tr class="b">
+            
+<td><b><a href="#indentSize">indentSize</a></b></td>
+            
+<td><tt>int</tt></td>
+            
+<td><tt>-</tt></td>
+            
+<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <tt>2</tt>.<br /><b>User property is</b>: <tt>indentSize</tt>.</td>
+          </tr>
+          
+<tr class="a">
+            
+<td><b><a href="#lineLength">lineLength</a></b></td>
+            
+<td><tt>int</tt></td>
+            
+<td><tt>-</tt></td>
+            
+<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <tt>80</tt>.<br /><b>User property is</b>: <tt>lineLength</tt>.</td>
           </tr>
         </table>
       </div>
@@ -138,51 +147,25 @@
 <div class="section">
 <h3>Parameter Details<a name="Parameter_Details"></a></h3>
         
-<p><b><a name="contractsDir">contractsDir</a>:</b></p>
+<p><b><a name="detail">detail</a>:</b></p>
         
-<div>(no description)</div>
-        
-<ul>
-          
-<li><b>Type</b>: <tt>java.io.File</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>contractsDir</tt></li>
-          
-<li><b>Default</b>: <tt>${basedir}</tt></li>
-        </ul><hr />
-<p><b><a name="maxPort">maxPort</a>:</b></p>
-        
-<div>(no description)</div>
+<div>If <tt>true</tt>, display all settable properties for each
+goal.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>int</tt></li>
+<li><b>Type</b>: <tt>boolean</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>User Property</b>: <tt>maxPort</tt></li>
+<li><b>User Property</b>: <tt>detail</tt></li>
           
-<li><b>Default</b>: <tt>15000</tt></li>
+<li><b>Default</b>: <tt>false</tt></li>
         </ul><hr />
-<p><b><a name="minPort">minPort</a>:</b></p>
+<p><b><a name="goal">goal</a>:</b></p>
         
-<div>(no description)</div>
-        
-<ul>
-          
-<li><b>Type</b>: <tt>int</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>minPort</tt></li>
-          
-<li><b>Default</b>: <tt>10000</tt></li>
-        </ul><hr />
-<p><b><a name="stubs">stubs</a>:</b></p>
-        
-<div>(no description)</div>
+<div>The name of the goal for which to show help. If unspecified, all
+goals will be displayed.</div>
         
 <ul>
           
@@ -190,7 +173,35 @@
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>User Property</b>: <tt>stubs</tt></li>
+<li><b>User Property</b>: <tt>goal</tt></li>
+        </ul><hr />
+<p><b><a name="indentSize">indentSize</a>:</b></p>
+        
+<div>The number of spaces per indentation level, should be positive.</div>
+        
+<ul>
+          
+<li><b>Type</b>: <tt>int</tt></li>
+          
+<li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>User Property</b>: <tt>indentSize</tt></li>
+          
+<li><b>Default</b>: <tt>2</tt></li>
+        </ul><hr />
+<p><b><a name="lineLength">lineLength</a>:</b></p>
+        
+<div>The maximum length of a display line, should be positive.</div>
+        
+<ul>
+          
+<li><b>Type</b>: <tt>int</tt></li>
+          
+<li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>User Property</b>: <tt>lineLength</tt></li>
+          
+<li><b>Default</b>: <tt>80</tt></li>
         </ul>
       </div>
     </div>
