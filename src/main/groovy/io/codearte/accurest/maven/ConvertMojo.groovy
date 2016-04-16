@@ -35,7 +35,7 @@ class ConvertMojo extends AbstractMojo {
     @Parameter(property = 'accurest.skip', defaultValue = 'false')
     private boolean skip
 
-    @Component
+    @Parameter(defaultValue = '${session}', readonly = true)
     private MavenSession mavenSession
 
     private final PathTranslator translator
