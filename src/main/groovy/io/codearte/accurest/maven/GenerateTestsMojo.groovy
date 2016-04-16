@@ -9,13 +9,12 @@ import io.codearte.accurest.config.TestMode
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugin.MojoFailureException
-import org.apache.maven.plugins.annotations.LifecyclePhase
-import org.apache.maven.plugins.annotations.Mojo
-import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.plugins.annotations.*
+import org.apache.maven.project.MavenProject
 
 import static java.lang.String.format
 
-@Mojo(name = 'generateTests', defaultPhase = LifecyclePhase.GENERATE_TEST_SOURCES)
+@Mojo(name = 'generateTests', defaultPhase = LifecyclePhase.GENERATE_TEST_SOURCES, requiresDependencyResolution = ResolutionScope.TEST)
 @CompileStatic
 class GenerateTestsMojo extends AbstractMojo {
 
@@ -43,6 +42,9 @@ class GenerateTestsMojo extends AbstractMojo {
     @Parameter
     private String nameSuffixForTests
 
+    @Component
+    private MavenProject project
+
     @Parameter(property = 'accurest.skip', defaultValue = 'false')
     private boolean skip
 
@@ -65,16 +67,21 @@ class GenerateTestsMojo extends AbstractMojo {
         config.ruleClassForTests = ruleClassForTests
         config.nameSuffixForTests = nameSuffixForTests
 
-        log.info("Using ${config.generatedTestSourcesDir} as test source directory")
-        log.info("Using ${config.baseClassForTests} as base class for test classes")
+        project.addTestCompileSourceRoot(generatedTestSourcesDir.absolutePath)
+
+        if (log.isInfoEnabled()) {
+            log.info("Test Source directory: $generatedTestSourcesDir added.");
+            log.info("Using ${config.baseClassForTests} as base class for test classes")
+        }
 
         try {
             TestGenerator generator = new TestGenerator(config)
             int generatedClasses = generator.generate()
             log.info("Generated $generatedClasses test classes.")
         } catch (AccurestException e) {
-            throw new MojoExecutionException(format("Accurest Plugin exception: %s", e.getMessage()), e)
+            throw new MojoExecutionException(format("Accurest Plugin exception: %s", e.message), e)
         }
+
     }
 
 }

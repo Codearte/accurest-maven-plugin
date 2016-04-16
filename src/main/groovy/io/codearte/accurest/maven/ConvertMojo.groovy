@@ -71,7 +71,7 @@ class ConvertMojo extends AbstractMojo {
     }
 
     private boolean isInsideProject() {
-        return mavenSession.getRequest().isProjectPresent()
+        return mavenSession.request.projectPresent
     }
 
     private File resolveFile(File baseDir, String requestedPath, String defaultPath) {
