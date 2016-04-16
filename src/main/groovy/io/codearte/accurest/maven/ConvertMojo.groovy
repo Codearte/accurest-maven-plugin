@@ -26,10 +26,10 @@ class ConvertMojo extends AbstractMojo {
     @Parameter(defaultValue = '${project.build.directory}', readonly = true, required = true)
     private File projectBuildDirectory
 
-    @Parameter(property = 'accurest.contractsDirectory')
+    @Parameter(property = 'contractsDirectory')
     private String contractsDirectory
 
-    @Parameter(property = 'outputDirectory')
+    @Parameter(property = 'stubsDirectory')
     private String outputDirectory
 
     @Parameter(property = 'accurest.skip', defaultValue = 'false')
