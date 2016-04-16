@@ -20,17 +20,20 @@ class RunMojo extends AbstractMojo {
     @Parameter(defaultValue = '${repositorySystemSession}', readonly = true)
     private RepositorySystemSession repoSession
 
-    @Parameter(property = 'contractsDir', defaultValue = '${basedir}')
+    @Parameter(property = 'accurest.contractsDir', defaultValue = '${basedir}')
     private File contractsDir
 
-    @Parameter(property = 'stubs')
+    @Parameter(property = 'accurest.stubs')
     private String stubs
 
-    @Parameter(property = 'minPort', defaultValue = '10000')
+    @Parameter(property = 'accurest.minPort', defaultValue = '10000')
     private int minPort
 
-    @Parameter(property = 'maxPort', defaultValue = '15000')
+    @Parameter(property = 'accurest.maxPort', defaultValue = '15000')
     private int maxPort
+
+    @Parameter(property = 'accurest.skip', defaultValue = 'false')
+    private boolean skip
 
     private String stubsClassifier = 'stubs'
 
@@ -44,6 +47,12 @@ class RunMojo extends AbstractMojo {
     }
 
     void execute() throws MojoExecutionException, MojoFailureException {
+
+        if (skip) {
+            log.info("Skipping accurest execution: accurest.skip=${skip}")
+            return
+        }
+
         StubRunnerOptions options = new StubRunnerOptions(minPort, maxPort, "", false, stubsClassifier)
         log.debug("Launching StubRunner with args: $options")
         if (!stubs) {

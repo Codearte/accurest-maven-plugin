@@ -93,7 +93,7 @@
 				</executions>
 				<configuration>
 					<baseClassForTests>com.ofg.twitter.place.BaseMockMvcTest</baseClassForTests>
-					<contractsDir>src/test/resources/stubs</contractsDir>
+					<contractsDirectory>src/test/resources/stubs</contractsDirectory>
 					<testFramework>SPOCK</testFramework>
 					<nameSuffixForTests>Test</nameSuffixForTests>
 				</configuration>
