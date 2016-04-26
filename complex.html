@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20160426" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Android Maven Plugin - Source Code Management</title>
+    <title>Android Maven Plugin - </title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.5.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -213,12 +213,10 @@
         Accurest with Spock</a>
             </li>
                 
-      <li>
+      <li class="active">
   
-                          <a href="complex.html" title="Complex Configuration">
-          <span class="none"></span>
-        Complex Configuration</a>
-            </li>
+            <a href="#"><span class="none"></span>Complex Configuration</a>
+          </li>
                               <li class="nav-header">Related Projects</li>
                               
       <li>
@@ -228,104 +226,13 @@
         Accurate REST</a>
             </li>
                               <li class="nav-header">Project Documentation</li>
-                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                        
       <li>
   
                           <a href="project-info.html" title="Project Information">
-          <span class="icon-chevron-down"></span>
+          <span class="icon-chevron-right"></span>
         Project Information</a>
-                    <ul class="nav nav-list">
-                    
-      <li>
-  
-                          <a href="integration.html" title="CI Management">
-          <span class="none"></span>
-        CI Management</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="dependencies.html" title="Dependencies">
-          <span class="none"></span>
-        Dependencies</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="dependency-convergence.html" title="Dependency Convergence">
-          <span class="none"></span>
-        Dependency Convergence</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="dependency-info.html" title="Dependency Information">
-          <span class="none"></span>
-        Dependency Information</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="distribution-management.html" title="Distribution Management">
-          <span class="none"></span>
-        Distribution Management</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="index.html" title="About">
-          <span class="none"></span>
-        About</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="issue-tracking.html" title="Issue Management">
-          <span class="none"></span>
-        Issue Management</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="license.html" title="Licenses">
-          <span class="none"></span>
-        Licenses</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="plugin-management.html" title="Plugin Management">
-          <span class="none"></span>
-        Plugin Management</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="plugins.html" title="Plugins">
-          <span class="none"></span>
-        Plugins</a>
-            </li>
-                    
-      <li>
-  
-                          <a href="team-list.html" title="Team">
-          <span class="none"></span>
-        Team</a>
-            </li>
-                    
-      <li class="active">
-  
-            <a href="#"><span class="none"></span>Source Code Management</a>
-          </li>
-                    
-      <li>
-  
-                          <a href="project-summary.html" title="Summary">
-          <span class="none"></span>
-        Summary</a>
-            </li>
-              </ul>
-        </li>
+                  </li>
                                                                                                                                                             
       <li>
   
@@ -353,24 +260,138 @@
                 
         <div id="bodyColumn"  class="span10" >
                                   
-            <div class="section">
-<h2>Overview<a name="Overview"></a></h2><a name="Overview"></a>
-<p>This project uses <a class="externalLink" href="http://git-scm.com/">Git</a> to manage its source code. Instructions on Git use can be found at <a class="externalLink" href="http://git-scm.com/documentation">http://git-scm.com/documentation</a>.</p></div>
-<div class="section">
-<h2>Web Browser Access<a name="Web_Browser_Access"></a></h2><a name="Web_Browser_Access"></a>
-<p>The following is a link to a browsable version of the source repository:</p>
-<div class="source"><pre class="prettyprint"><a class="externalLink" href="https://github.com/Codearte/accurest-maven-plugin">https://github.com/Codearte/accurest-maven-plugin</a></pre></div></div>
-<div class="section">
-<h2>Anonymous Access<a name="Anonymous_Access"></a></h2><a name="Anonymous_Access"></a>
-<p>The source can be checked out anonymously from Git with this command (See <a class="externalLink" href="http://git-scm.com/docs/git-clone">http://git-scm.com/docs/git-clone</a>):</p>
-<div class="source"><pre class="prettyprint">$ git clone https://github.com/Codearte/accurest-maven-plugin.git</pre></div></div>
-<div class="section">
-<h2>Developer Access<a name="Developer_Access"></a></h2><a name="Developer_Access"></a>
-<p>Only project developers can access the Git tree via this method (See <a class="externalLink" href="http://git-scm.com/docs/git-clone">http://git-scm.com/docs/git-clone</a>).</p>
-<div class="source"><pre class="prettyprint">$ git clone git@github.com:Codearte/accurest-maven-plugin.git</pre></div></div>
-<div class="section">
-<h2>Access from Behind a Firewall<a name="Access_from_Behind_a_Firewall"></a></h2><a name="Access_from_Behind_a_Firewall"></a>
-<p>Refer to the documentation of the SCM used for more information about access behind a firewall.</p></div>
+            <div class="sect1">
+<h2 id="more_complex_plugin_configuration">More Complex Plugin Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sample more complex configuration for Java Project with JUnit tests.</p>
+</div>
+<div class="sect2">
+<h3 id="project_configuration_for_accurest_with_junit_tests_and_stub_publishing">Project configuration for Accurest with JUnit tests and stub publishing</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">            &lt;plugin&gt;
+                &lt;groupId&gt;io.codearte.accurest&lt;/groupId&gt;
+                &lt;artifactId&gt;accurest-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${accurest-plugin.version}&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;convert&lt;/goal&gt;
+                            &lt;goal&gt;generateStubs&lt;/goal&gt;
+                            &lt;goal&gt;generateTests&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;configuration&gt;
+                            &lt;basePackageForTests&gt;com.blogspot.toomuchcoding.frauddetection&lt;/basePackageForTests&gt;
+                            &lt;testMode&gt;MOCKMVC&lt;/testMode&gt;
+                            &lt;testFramework&gt;JUNIT&lt;/testFramework&gt;
+                            &lt;classifier&gt;stubs&lt;/classifier&gt;
+                            &lt;nameSuffixForTests&gt;Test&lt;/nameSuffixForTests&gt;
+                            &lt;ruleClassForTests&gt;org.junit.rules.ErrorCollector&lt;/ruleClassForTests&gt;
+                            &lt;staticImports&gt;
+                                &lt;staticImport&gt;com.blogspot.toomuchcoding.frauddetection.matchers.CustomMatchers.*&lt;/staticImport&gt;
+                            &lt;/staticImports&gt;
+                            &lt;imports&gt;
+                                &lt;import&gt;com.blogspot.toomuchcoding.frauddetection.matchers.CustomMatchers&lt;/import&gt;
+                            &lt;/imports&gt;
+                            &lt;ignoredFiles&gt;
+                                &lt;ignoredFile&gt;broken**&lt;/ignoredFile&gt;
+                            &lt;/ignoredFiles&gt;
+                            &lt;excludedFiles&gt;
+                                &lt;param&gt;shouldMarkClientAsFraud.groovy&lt;/param&gt;
+                            &lt;/excludedFiles&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+                &lt;configuration&gt;
+                    &lt;baseClassForTests&gt;com.blogspot.toomuchcoding.frauddetection.BaseAccurest&lt;/baseClassForTests&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="base_test_class">Base Test class</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package com.blogspot.toomuchcoding.frauddetection;
+
+import org.junit.Before;
+
+import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+
+public class BaseAccurest {
+
+	@Before
+	public void setup() {
+		RestAssuredMockMvc.standaloneSetup(new FraudDetectionController());
+	}
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample_additional_matcher">Sample additional matcher</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package com.blogspot.toomuchcoding.frauddetection.matchers;
+
+import org.junit.Assert;
+
+public class CustomMatchers {
+
+	public static void assertThatRejectionReasonIsNull(String rejectionReason) {
+		Assert.assertNull(rejectionReason);
+	}
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample_contract_using_matcher">Sample contract using matcher</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">io.codearte.accurest.dsl.GroovyDsl.make {
+				request {
+					method 'PUT'
+					url '/fraudcheck'
+					body("""
+						{
+						"clientPesel":"${value(client(regex('[0-9]{10}')), server('1234567890'))}",
+						"loanAmount":123.123
+						}
+					"""
+					)
+					headers {
+						header('Content-Type', 'application/vnd.fraud.v1+json')
+					}
+
+				}
+			response {
+				status 200
+				body(
+						fraudCheckStatus: "OK",
+						rejectionReason: $(client(null), server(execute('assertThatRejectionReasonIsNull($it)')))
+				)
+				headers {
+					 header('Content-Type': 'application/vnd.fraud.v1+json')
+				}
+			}
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="project_source_code">Project source code</h3>
+<div class="paragraph">
+<p><a href="https://github.com/Codearte/accurest-maven-plugin/tree/master/src/test/projects/complex-configuration" class="bare">https://github.com/Codearte/accurest-maven-plugin/tree/master/src/test/projects/complex-configuration</a></p>
+</div>
+</div>
+</div>
+</div>
                   </div>
             </div>
           </div>
