@@ -45,11 +45,29 @@ class GenerateTestsMojo extends AbstractMojo {
     @Parameter
     private String nameSuffixForTests
 
+    /**
+     * Imports that should be added to generated tests
+     */
     @Parameter
     private String[] imports
 
+    /**
+     * Static imports that should be added to generated tests
+     */
     @Parameter
     private String[] staticImports
+
+    /**
+     * Patterns that should not be taken into account for processing
+     */
+    @Parameter
+    List<String> excludedFiles
+
+    /**
+     * Patterns for which Accurest should generate @Ignored tests
+     */
+    @Parameter
+    List<String> ignoredFiles
 
     @Parameter(defaultValue = '${project}', readonly = true)
     private MavenProject project
@@ -78,6 +96,8 @@ class GenerateTestsMojo extends AbstractMojo {
 
         config.setImports(imports)
         config.setStaticImports(staticImports)
+        config.setIgnoredFiles(ignoredFiles)
+        config.setExcludedFiles(excludedFiles)
 
         project.addTestCompileSourceRoot(generatedTestSourcesDir.absolutePath)
 
