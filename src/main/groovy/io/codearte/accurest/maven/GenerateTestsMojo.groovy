@@ -45,6 +45,12 @@ class GenerateTestsMojo extends AbstractMojo {
     @Parameter
     private String nameSuffixForTests
 
+    @Parameter
+    private String[] imports
+
+    @Parameter
+    private String[] staticImports
+
     @Parameter(defaultValue = '${project}', readonly = true)
     private MavenProject project
 
@@ -69,6 +75,9 @@ class GenerateTestsMojo extends AbstractMojo {
         config.baseClassForTests = baseClassForTests
         config.ruleClassForTests = ruleClassForTests
         config.nameSuffixForTests = nameSuffixForTests
+
+        config.setImports(imports)
+        config.setStaticImports(staticImports)
 
         project.addTestCompileSourceRoot(generatedTestSourcesDir.absolutePath)
 
