@@ -1,33 +1,27 @@
 package io.codearte.accurest.maven;
 
-import groovy.transform.CompileStatic;
 import io.codearte.accurest.config.AccurestConfigProperties;
 import io.codearte.accurest.wiremock.DslToWireMockClientConverter;
 import io.codearte.accurest.wiremock.RecursiveFilesConverter;
 import org.apache.maven.execution.MavenSession;
-import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugins.annotations.*;
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.shared.filtering.MavenFilteringException;
-import org.apache.maven.shared.filtering.MavenResourcesExecution;
 import org.apache.maven.shared.filtering.MavenResourcesFiltering;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
- *
  * Convert Accurest contracts into WireMock stubs mappings.
- *
+ * <p>
  * This goal allow to generate `stubs-jar` or execute `accurest:run` with generated WireMock mappings.
- *
  */
 @Mojo(name = "convert", requiresProject = false, defaultPhase = LifecyclePhase.PROCESS_TEST_RESOURCES)
-@CompileStatic
 public class ConvertMojo extends AbstractMojo {
 
     /**
@@ -45,7 +39,7 @@ public class ConvertMojo extends AbstractMojo {
 
     /**
      * Directory containing contracts written using the GroovyDSL
-     *
+     * <p>
      * This parameter is only used when goal is executed outside of maven project.
      */
     @Parameter(property = "contractsDirectory", defaultValue = "${basedir}")
