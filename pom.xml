@@ -20,6 +20,8 @@
     <description>Spring Cloud Contract Verifier Maven Plugin</description>
     <url>https://github.com/Codearte/accurest-maven-plugin</url>
 
+    <inceptionYear>2016</inceptionYear>
+
     <prerequisites>
         <maven>[3.2.1,)</maven>
     </prerequisites>
@@ -174,6 +176,35 @@
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0.rc1</version>
+                <configuration>
+                    <header>src/etc/header.txt</header>
+                    <includes>
+                        <include>src/**</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/.idea/**</exclude>
+                        <exclude>**/*.adoc</exclude>
+                    </excludes>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                    <useDefaultMapping>true</useDefaultMapping>
+                    <properties>
+                        <year>${project.inceptionYear}</year>
+                        <company>Codearte</company> <!--FIXME: Change -->
+                    </properties>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
