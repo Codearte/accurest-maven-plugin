@@ -7,13 +7,13 @@ import org.codehaus.plexus.archiver.jar.Manifest
 class ManifestCreator {
     static Manifest createManifest(MavenProject project) {
         Manifest manifest = new Manifest();
-        Plugin accurestMavenPlugin = project.getBuildPlugins().find { it.artifactId == 'accurest-maven-plugin' }
-        manifest.addConfiguredAttribute(new Manifest.Attribute("Accurest-Maven-Plugin-Version", accurestMavenPlugin.version));
-        if (accurestMavenPlugin.getDependencies()) {
-            String accurestVersion = accurestMavenPlugin.getDependencies().find {
-                it.artifactId == 'accurest-core'
+        Plugin verifierMavenPlugin = project.getBuildPlugins().find { it.artifactId == 'spring-cloud-contract-verifier-maven-plugin' }
+        manifest.addConfiguredAttribute(new Manifest.Attribute("Spring-Cloud-Contract-Verifier-Maven-Plugin-Version", verifierMavenPlugin.version));
+        if (verifierMavenPlugin.getDependencies()) {
+            String verifierVersion = verifierMavenPlugin.getDependencies().find {
+                it.artifactId == 'spring-cloud-contract-verifier-core'
             }.version
-            manifest.addConfiguredAttribute(new Manifest.Attribute("Accurest-Version", accurestVersion));
+            manifest.addConfiguredAttribute(new Manifest.Attribute("Spring-Cloud-Contract-Verifier-Version", verifierVersion));
         }
         return manifest
     }

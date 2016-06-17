@@ -25,11 +25,11 @@ class CopyContracts {
     }
 
     void copy(File contractsDirectory, File outputDirectory) {
-        log.info('Copying accurest contracts')
+        log.info('Copying Spring Cloud Contract Verifier contracts')
         Resource testResource = new Resource(directory: contractsDirectory.absolutePath)
         MavenResourcesExecution mavenResourcesExecution = new MavenResourcesExecution(
                 resources: [testResource],
-                outputDirectory: new File(outputDirectory, 'accurest'),
+                outputDirectory: new File(outputDirectory, 'contracts'),
                 mavenProject: project,
                 encoding: 'UTF-8',
                 mavenSession: mavenSession);

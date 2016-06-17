@@ -1,10 +1,8 @@
 package io.codearte.accurest.maven;
 
-import io.codearte.accurest.AccurestException;
-import io.codearte.accurest.TestGenerator;
-import io.codearte.accurest.config.AccurestConfigProperties;
-import io.codearte.accurest.config.TestFramework;
-import io.codearte.accurest.config.TestMode;
+import java.io.File;
+import java.util.List;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -13,20 +11,22 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
-
-import java.io.File;
-import java.util.List;
+import org.springframework.cloud.contract.verifier.ContractVerifierException;
+import org.springframework.cloud.contract.verifier.TestGenerator;
+import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties;
+import org.springframework.cloud.contract.verifier.config.TestFramework;
+import org.springframework.cloud.contract.verifier.config.TestMode;
 
 @Mojo(name = "generateTests", defaultPhase = LifecyclePhase.GENERATE_TEST_SOURCES, requiresDependencyResolution = ResolutionScope.TEST)
 public class GenerateTestsMojo extends AbstractMojo {
 
-    @Parameter(property = "accurest.contractsDirectory", defaultValue = "${project.basedir}/src/test/resources/accurest")
+    @Parameter(property = "spring.cloud.contract.verifier.contractsDirectory", defaultValue = "${project.basedir}/src/test/resources/contracts")
     private File contractsDirectory;
 
-    @Parameter(defaultValue = "${project.build.directory}/generated-test-sources/accurest")
+    @Parameter(defaultValue = "${project.build.directory}/generated-test-sources/contractVerifier")
     private File generatedTestSourcesDir;
 
-    @Parameter(defaultValue = "io.codearte.accurest.tests")
+    @Parameter(defaultValue = "org.springframework.cloud.contract.verifier.tests")
     private String basePackageForTests;
 
     @Parameter
@@ -80,7 +80,7 @@ public class GenerateTestsMojo extends AbstractMojo {
             return;
         }
         getLog().info("Generating server tests source code for Accurest contract verification");
-        final AccurestConfigProperties config = new AccurestConfigProperties();
+        final ContractVerifierConfigProperties config = new ContractVerifierConfigProperties();
         config.setContractsDslDir(contractsDirectory);
         config.setGeneratedTestSourcesDir(generatedTestSourcesDir);
         config.setTargetFramework(testFramework);
@@ -102,8 +102,8 @@ public class GenerateTestsMojo extends AbstractMojo {
             TestGenerator generator = new TestGenerator(config);
             int generatedClasses = generator.generate();
             getLog().info("Generated " + generatedClasses + " test classes.");
-        } catch (AccurestException e) {
-            throw new MojoExecutionException(String.format("Accurest Plugin exception: %s", e.getMessage()), e);
+        } catch (ContractVerifierException e) {
+            throw new MojoExecutionException(String.format("Spring Cloud Contract Verifier Plugin exception: %s", e.getMessage()), e);
         }
     }
 

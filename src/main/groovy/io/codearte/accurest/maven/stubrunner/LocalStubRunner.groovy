@@ -2,9 +2,9 @@ package io.codearte.accurest.maven.stubrunner
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
-import io.codearte.accurest.stubrunner.StubConfiguration
-import io.codearte.accurest.stubrunner.StubRunner
-import io.codearte.accurest.stubrunner.StubRunnerOptions
+import org.springframework.cloud.contract.stubrunner.StubConfiguration
+import org.springframework.cloud.contract.stubrunner.StubRunner
+import org.springframework.cloud.contract.stubrunner.StubRunnerOptions
 
 import javax.inject.Named
 

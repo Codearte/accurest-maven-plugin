@@ -2,8 +2,8 @@ package io.codearte.accurest.maven.stubrunner
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
-import io.codearte.accurest.stubrunner.*
 import org.eclipse.aether.RepositorySystemSession
+import org.springframework.cloud.contract.stubrunner.*
 
 import javax.inject.Inject
 import javax.inject.Named

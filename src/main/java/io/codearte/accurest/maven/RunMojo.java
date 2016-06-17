@@ -1,11 +1,10 @@
 package io.codearte.accurest.maven;
 
-import io.codearte.accurest.maven.stubrunner.LocalStubRunner;
-import io.codearte.accurest.maven.stubrunner.RemoteStubRunner;
-import io.codearte.accurest.stubrunner.BatchStubRunner;
-import io.codearte.accurest.stubrunner.StubRunner;
-import io.codearte.accurest.stubrunner.StubRunnerOptions;
-import io.codearte.accurest.stubrunner.StubRunnerOptionsBuilder;
+import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -14,11 +13,13 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.eclipse.aether.RepositorySystemSession;
+import org.springframework.cloud.contract.stubrunner.BatchStubRunner;
+import org.springframework.cloud.contract.stubrunner.StubRunner;
+import org.springframework.cloud.contract.stubrunner.StubRunnerOptions;
+import org.springframework.cloud.contract.stubrunner.StubRunnerOptionsBuilder;
 
-import javax.inject.Inject;
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
+import io.codearte.accurest.maven.stubrunner.LocalStubRunner;
+import io.codearte.accurest.maven.stubrunner.RemoteStubRunner;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 
@@ -28,7 +29,7 @@ public class RunMojo extends AbstractMojo {
     @Parameter(defaultValue = "${repositorySystemSession}", readonly = true)
     private RepositorySystemSession repoSession;
 
-    @Parameter(defaultValue = "${project.build.directory}/accurest/mappings")
+    @Parameter(defaultValue = "${project.build.directory}/contractVerifier/mappings")
     private File stubsDirectory;
 
     @Parameter(property = "stubsDirectory", defaultValue = "${basedir}")
@@ -37,28 +38,28 @@ public class RunMojo extends AbstractMojo {
     /**
      * HTTP port for WireMock server
      */
-    @Parameter(property = "accurest.http.port", defaultValue = "8080")
+    @Parameter(property = "spring.cloud.contract.verifier.http.port", defaultValue = "8080")
     private int httpPort;
 
     /**
-     * Set this to "true" to bypass accurest execution.
+     * Set this to "true" to bypass verifier execution.
      */
-    @Parameter(property = "accurest.skip", defaultValue = "false")
+    @Parameter(property = "spring.cloud.contract.verifier.skip", defaultValue = "false")
     private boolean skip;
 
     /**
-     * Set this to "true" to bypass accurest test generation.
+     * Set this to "true" to bypass verifier test generation.
      */
-    @Parameter(property = "accurest.skipTestOnly", defaultValue = "false")
+    @Parameter(property = "spring.cloud.contract.verifier.skipTestOnly", defaultValue = "false")
     private boolean skipTestOnly;
 
-    @Parameter(property = "accurest.stubs")
+    @Parameter(property = "spring.cloud.contract.verifier.stubs")
     private String stubs;
 
-    @Parameter(property = "accurest.http.minPort", defaultValue = "10000")
+    @Parameter(property = "spring.cloud.contract.verifier.http.minPort", defaultValue = "10000")
     private int minPort;
 
-    @Parameter(property = "accurest.http.maxPort", defaultValue = "15000")
+    @Parameter(property = "spring.cloud.contract.verifier.http.maxPort", defaultValue = "15000")
     private int maxPort;
 
     /**
@@ -82,7 +83,7 @@ public class RunMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         if (skip || skipTestOnly) {
-            getLog().info("Skipping accurest execution: accurest.skip=" + String.valueOf(skip));
+            getLog().info("Skipping verifier execution: verifier.skip=" + String.valueOf(skip));
             return;
         }
         BatchStubRunner batchStubRunner = null;

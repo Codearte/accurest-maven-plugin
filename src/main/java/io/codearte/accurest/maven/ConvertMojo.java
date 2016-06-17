@@ -1,8 +1,7 @@
 package io.codearte.accurest.maven;
 
-import io.codearte.accurest.config.AccurestConfigProperties;
-import io.codearte.accurest.wiremock.DslToWireMockClientConverter;
-import io.codearte.accurest.wiremock.RecursiveFilesConverter;
+import java.io.File;
+
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -13,8 +12,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.filtering.MavenResourcesFiltering;
-
-import java.io.File;
+import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties;
+import org.springframework.cloud.contract.verifier.wiremock.DslToWireMockClientConverter;
+import org.springframework.cloud.contract.verifier.wiremock.RecursiveFilesConverter;
 
 /**
  * Convert Accurest contracts into WireMock stubs mappings.
@@ -27,14 +27,14 @@ public class ConvertMojo extends AbstractMojo {
     /**
      * Directory containing Accurest contracts written using the GroovyDSL
      */
-    @Parameter(defaultValue = "${basedir}/src/test/resources/accurest")
+    @Parameter(defaultValue = "${basedir}/src/test/resources/contracts")
     private File contractsDirectory;
 
     /**
      * Directory where the generated WireMock stubs from Groovy DSL should be placed.
      * You can then mention them in your packaging task to create jar with stubs
      */
-    @Parameter(defaultValue = "${project.build.directory}/accurest")
+    @Parameter(defaultValue = "${project.build.directory}/stubs")
     private File outputDirectory;
 
     /**
@@ -63,18 +63,18 @@ public class ConvertMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         if (skip) {
-            getLog().info(String.format("Skipping accurest execution: accurest.skip=%s", skip));
+            getLog().info(String.format("Skipping Spring Cloud Contract Verifier execution: spring.cloud.contract.verifier.skip=%s", skip));
             return;
         }
 
         new CopyContracts(project, mavenSession, mavenResourcesFiltering).copy(contractsDirectory, outputDirectory);
 
-        final AccurestConfigProperties config = new AccurestConfigProperties();
+        final ContractVerifierConfigProperties config = new ContractVerifierConfigProperties();
         config.setContractsDslDir(isInsideProject() ? contractsDirectory : source);
         config.setStubsOutputDir(isInsideProject() ? new File(outputDirectory, "mappings") : destination);
 
-        getLog().info("Converting from accurest contracts written in GroovyDSL to WireMock stubs mappings");
-        getLog().info(String.format("     Accurest contracts directory: %s", config.getContractsDslDir()));
+        getLog().info("Converting from Spring Cloud Contract Verifier DSL contracts to WireMock stubs mappings");
+        getLog().info(String.format("     Spring Cloud Contract Verifier contracts directory: %s", config.getContractsDslDir()));
         getLog().info(String.format("WireMock stubs mappings directory: %s", config.getStubsOutputDir()));
 
         RecursiveFilesConverter converter = new RecursiveFilesConverter(new DslToWireMockClientConverter(), config);

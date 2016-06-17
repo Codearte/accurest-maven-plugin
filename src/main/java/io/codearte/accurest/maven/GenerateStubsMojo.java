@@ -1,5 +1,7 @@
 package io.codearte.accurest.maven;
 
+import java.io.File;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -12,24 +14,22 @@ import org.apache.maven.project.MavenProjectHelper;
 import org.codehaus.plexus.archiver.Archiver;
 import org.codehaus.plexus.archiver.jar.JarArchiver;
 
-import java.io.File;
-
 @Mojo(name = "generateStubs", defaultPhase = LifecyclePhase.PACKAGE, requiresProject = true)
 public class GenerateStubsMojo extends AbstractMojo {
 
     private static final String STUB_MAPPING_FILE_PATTERN = "**/*.json";
-    private static final String ACCUREST_FILE_PATTERN = "**/*.groovy";
+    private static final String CONTRACT_FILE_PATTERN = "**/*.groovy";
 
     @Parameter(defaultValue = "${project.build.directory}", readonly = true, required = true)
     private File projectBuildDirectory;
 
-    @Parameter(property = "stubsDirectory", defaultValue = "${project.build.directory}/accurest")
+    @Parameter(property = "stubsDirectory", defaultValue = "${project.build.directory}/stubs")
     private File outputDirectory;
 
     /**
-     * Set this to "true" to bypass accurest execution..
+     * Set this to "true" to bypass Verifier execution..
      */
-    @Parameter(property = "accurest.skip", defaultValue = "false")
+    @Parameter(property = "spring.cloud.contract.verifier.skip", defaultValue = "false")
     private boolean skip;
 
     @Component
@@ -49,7 +49,7 @@ public class GenerateStubsMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         if (skip) {
-            getLog().info("Skipping accurest execution: accurest.skip=" + skip);
+            getLog().info("Skipping Spring Cloud Contract Verifier execution: spring.cloud.contract.verifier.skip=" + skip);
             return;
         }
         File stubsJarFile = createStubJar(outputDirectory);
@@ -64,10 +64,12 @@ public class GenerateStubsMojo extends AbstractMojo {
         File stubsJarFile = new File(projectBuildDirectory, stubArchiveName);
         try {
             if (attachContracts) {
-                archiver.addDirectory(stubsOutputDir, new String[]{STUB_MAPPING_FILE_PATTERN, ACCUREST_FILE_PATTERN}, new String[0]);
+                archiver.addDirectory(stubsOutputDir, new String[]{STUB_MAPPING_FILE_PATTERN,
+                        CONTRACT_FILE_PATTERN }, new String[0]);
             } else {
-                getLog().info("Skipping attaching accurest contracts");
-                archiver.addDirectory(stubsOutputDir, new String[]{STUB_MAPPING_FILE_PATTERN}, new String[]{ACCUREST_FILE_PATTERN});
+                getLog().info("Skipping attaching Spring Cloud Contract Verifier contracts");
+                archiver.addDirectory(stubsOutputDir, new String[]{STUB_MAPPING_FILE_PATTERN}, new String[]{
+                        CONTRACT_FILE_PATTERN });
             }
             archiver.setCompress(true);
             archiver.setDestFile(stubsJarFile);

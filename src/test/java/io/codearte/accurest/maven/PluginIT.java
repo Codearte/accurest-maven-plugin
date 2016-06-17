@@ -1,7 +1,6 @@
 package io.codearte.accurest.maven;
 
 import java.io.File;
-import java.util.regex.Pattern;
 
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -35,7 +34,7 @@ public class PluginIT {
 		maven.forProject(basedir)
 				.execute("package")
 				.assertErrorFreeLog()
-				.assertLogText("Generating server tests source code for Accurest contract verification")
+				.assertLogText("Generating server tests source code for Spring Cloud Contract Verifier contract verification")
 				.assertLogText("Generated 1 test classes.")
 				.assertLogText("Converting from accurest contracts written in GroovyDSL to WireMock stubs mappings")
 				.assertLogText("Creating new json")
@@ -49,7 +48,7 @@ public class PluginIT {
 		maven.forProject(basedir)
 				.execute("package")
 				.assertErrorFreeLog()
-				.assertLogText("Generating server tests source code for Accurest contract verification")
+				.assertLogText("Generating server tests source code for Spring Cloud Contract Verifier contract verification")
 				.assertLogText("Generated 1 test classes.")
 				.assertLogText("Converting from accurest contracts written in GroovyDSL to WireMock stubs mappings")
 				.assertLogText("Creating new json")
@@ -63,7 +62,7 @@ public class PluginIT {
 		maven.forProject(basedir)
 				.execute("package")
 				.assertErrorFreeLog()
-				.assertLogText("Generating server tests source code for Accurest contract verification")
+				.assertLogText("Generating server tests source code for Spring Cloud Contract Verifier contract verification")
 				.assertLogText("Generated 1 test classes.")
 				.assertLogText("Converting from accurest contracts written in GroovyDSL to WireMock stubs mappings")
 				.assertLogText("Creating new json")
@@ -91,7 +90,7 @@ public class PluginIT {
 				.withCliOption("-X")
 				.execute(String.format("io.codearte.accurest:accurest-maven-plugin:%s:convert",
 						properties.getPluginVersion()))
-				.assertLogText("Converting from accurest contracts written in GroovyDSL to WireMock stubs mappings")
+				.assertLogText("Converting from Spring Cloud Contract Verifier contracts written in GroovyDSL to WireMock stubs mappings")
 				.assertLogText("Creating new json")
 				.assertErrorFreeLog();
 	}

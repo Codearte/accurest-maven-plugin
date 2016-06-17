@@ -2,10 +2,10 @@ package io.codearte.accurest.maven.stubrunner
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
-import io.codearte.accurest.stubrunner.AetherStubDownloader
 import org.apache.maven.project.MavenProject
 import org.eclipse.aether.RepositorySystem
 import org.eclipse.aether.RepositorySystemSession
+import org.springframework.cloud.contract.stubrunner.AetherStubDownloader
 
 import javax.inject.Inject
 import javax.inject.Named
