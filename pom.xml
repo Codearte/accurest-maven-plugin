@@ -6,7 +6,7 @@
     <groupId>org.springframework.cloud.contract</groupId>
     <artifactId>spring-cloud-contract-verifier-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-BUILD.SNAPSHOT</version>
 
     <name>Spring Cloud Contract Verifier Maven Plugin</name>
     <description>Spring Cloud Contract Verifier Maven Plugin</description>
@@ -30,7 +30,7 @@
             <email>mariuszs@gmail.com</email>
         </developer>
         <developer>
-            <id>mgrzejszczak</id>
+            <id>marcingrzejszczak</id>
             <name>Marcin Grzejszczak</name>
             <email>marcin@grzejszczak.pl</email>
         </developer>
@@ -70,12 +70,12 @@
         <repository>
             <id>repo.spring.io</id>
             <name>Spring Release Repository</name>
-            <url>https://repo.spring.io/libs-release-local</url>
+            <url>https://repo.spring.io/plugins-release-local</url>
         </repository>
         <snapshotRepository>
             <id>repo.spring.io</id>
             <name>Spring Snapshot Repository</name>
-            <url>https://repo.spring.io/libs-snapshot-local</url>
+            <url>https://repo.spring.io/plugins-snapshot-local</url>
         </snapshotRepository>
         <site>
             <id>github</id>
