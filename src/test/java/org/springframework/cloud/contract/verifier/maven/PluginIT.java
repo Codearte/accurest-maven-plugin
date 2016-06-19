@@ -52,9 +52,9 @@ public class PluginIT {
 				.assertErrorFreeLog()
 				.assertLogText("Generating server tests source code for Spring Cloud Contract Verifier contract verification")
 				.assertLogText("Generated 1 test classes.")
-				.assertLogText("Converting from Spring Cloud Contract Verifier contracts writtenin GroovyDSL to WireMock stubs mappings")
+				.assertLogText("Converting from Spring Cloud Contract Verifier contracts to WireMock stubs mappings")
 				.assertLogText("Creating new json")
-				.assertLogText("Running io.codearte.accurest.tests.AccurestSpec")
+				.assertLogText("Running org.springframework.cloud.contract.verifier.tests.ContractVerifierSpec")
 				.assertErrorFreeLog();
 	}
 
@@ -66,9 +66,9 @@ public class PluginIT {
 				.assertErrorFreeLog()
 				.assertLogText("Generating server tests source code for Spring Cloud Contract Verifier contract verification")
 				.assertLogText("Generated 1 test classes.")
-				.assertLogText("Converting from Spring Cloud Contract Verifier contracts writtenin GroovyDSL to WireMock stubs mappings")
+				.assertLogText("Converting from Spring Cloud Contract Verifier contracts to WireMock stubs mappings")
 				.assertLogText("Creating new json")
-				.assertLogText("Running io.codearte.accurest.tests.AccurestTest")
+				.assertLogText("Running org.springframework.cloud.contract.verifier.tests.ContractVerifierTest")
 				.assertErrorFreeLog();
 	}
 
@@ -80,9 +80,9 @@ public class PluginIT {
 				.assertErrorFreeLog()
 				.assertLogText("Generating server tests source code for Spring Cloud Contract Verifier contract verification")
 				.assertLogText("Generated 1 test classes.")
-				.assertLogText("Converting from Spring Cloud Contract Verifier contracts writtenin GroovyDSL to WireMock stubs mappings")
+				.assertLogText("Converting from Spring Cloud Contract Verifier contracts to WireMock stubs mappings")
 				.assertLogText("Creating new json")
-				.assertLogText("Running io.codearte.accurest.tests.AccurestTest")
+				.assertLogText("Running org.springframework.cloud.contract.verifier.tests.ContractVerifierTest")
 				.assertErrorFreeLog();
 	}
 
@@ -94,7 +94,7 @@ public class PluginIT {
 				.execute("package")
 				.assertErrorFreeLog()
 				.assertLogText("Tests run: 2, Failures: 0, Errors: 0, Skipped: 1")
-				.assertLogText("Running com.blogspot.toomuchcoding.frauddetection.AccurestTest")
+				.assertLogText("Running com.blogspot.toomuchcoding.frauddetection.ContractVerifierTest")
 				.assertErrorFreeLog();
 	}
 
@@ -106,7 +106,7 @@ public class PluginIT {
 				.withCliOption("-X")
 				.execute(String.format("org.springframework.cloud.contract:spring-cloud-contract-verifier-maven-plugin:%s:convert",
 						properties.getPluginVersion()))
-				.assertLogText("Converting from Spring Cloud Contract Verifier contracts written in GroovyDSL to WireMock stubs mappings")
+				.assertLogText("Converting from Spring Cloud Contract Verifier contracts to WireMock stubs mappings")
 				.assertLogText("Creating new json")
 				.assertErrorFreeLog();
 	}

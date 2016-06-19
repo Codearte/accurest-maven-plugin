@@ -121,7 +121,7 @@
                             </includes>
                         </testSource>
                         <testSource>
-                            <directory>${project.build.directory}/generated-test-sources/accurest</directory>
+                            <directory>${project.build.directory}/generated-test-sources/contracts</directory>
                             <includes>
                                 <include>**/*.groovy</include>
                             </includes>
