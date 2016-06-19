@@ -15,20 +15,23 @@
  *  limitations under the License.
  */
 org.springframework.cloud.contract.verifier.dsl.Contract.make {
-    request {
-        method 'POST'
-        url('/users') {
-
+    label 'some_label'
+    input {
+        messageFrom('jms:input')
+        messageBody([
+                bookName: 'foo'
+        ])
+        messageHeaders {
+            header('sample', 'header')
         }
-        headers {
-            header 'Content-Type': 'application/json'
-        }
-        body '''{ "login" : "john", "name": "John The Contract" }'''
     }
-    response {
-        status 200
+    outputMessage {
+        sentTo('jms:output')
+        body([
+                bookName: 'foo'
+        ])
         headers {
-            header 'Location': '/users/john'
+            header('BOOK-NAME', 'foo')
         }
     }
 }

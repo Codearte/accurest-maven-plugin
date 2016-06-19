@@ -83,8 +83,8 @@
             </plugin>
             <!-- tag::plugin[] -->
             <plugin>
-                <groupId>io.codearte.accurest</groupId>
-                <artifactId>accurest-maven-plugin</artifactId>
+                <groupId>org.springframework.cloud.contract</groupId>
+                <artifactId>spring-cloud-contract-verifier-maven-plugin</artifactId>
                 <version>${accurest-plugin.version}</version>
                 <executions>
                     <execution>

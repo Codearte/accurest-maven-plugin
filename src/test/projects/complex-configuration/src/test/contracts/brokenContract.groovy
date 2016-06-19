@@ -15,20 +15,30 @@
  *  limitations under the License.
  */
 org.springframework.cloud.contract.verifier.dsl.Contract.make {
-    request {
-        method 'POST'
-        url('/users') {
+				request {
+					method 'PUT'
+					url '/fraudcheck'
+					body("""
+						{
+						"clientPesel":"${value(client(regex('[0-9]{10}')), server('1234567890'))}",
+						"loanAmount":123.123
+						}
+					"""
+					)
+					headers {
+						header('Content-Type', 'application/vnd.fraud.v1+json')
+					}
 
-        }
-        headers {
-            header 'Content-Type': 'application/json'
-        }
-        body '''{ "login" : "john", "name": "John The Contract" }'''
-    }
-    response {
-        status 200
-        headers {
-            header 'Location': '/users/john'
-        }
-    }
+				}
+			response {
+				status 999
+				body(
+						fraudCheckStatus: "OK",
+						rejectionReason: $(client(null), server(execute('assertThatRejectionReasonIsNull($it)')))
+				)
+				headers {
+					 header('Content-Type': 'application/vnd.fraud.v1+json')
+				}
+			}
+
 }

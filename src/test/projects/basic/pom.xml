@@ -28,8 +28,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>io.codearte.accurest</groupId>
-				<artifactId>accurest-maven-plugin</artifactId>
+				<groupId>org.springframework.cloud.contract</groupId>
+				<artifactId>spring-cloud-contract-verifier-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

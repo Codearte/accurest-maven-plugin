@@ -15,20 +15,19 @@
  *  limitations under the License.
  */
 org.springframework.cloud.contract.verifier.dsl.Contract.make {
+    priority 2
     request {
-        method 'POST'
-        url('/users') {
-
-        }
+        method 'GET'
+        url('/greeting')
         headers {
             header 'Content-Type': 'application/json'
         }
-        body '''{ "login" : "john", "name": "John The Contract" }'''
     }
     response {
         status 200
-        headers {
-            header 'Location': '/users/john'
-        }
+        body (
+                id: 1,
+                content: "Hello, World!"
+        )
     }
 }
