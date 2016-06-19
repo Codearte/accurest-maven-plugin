@@ -16,13 +16,14 @@
  */
 package com.blogspot.toomuchcoding.frauddetection;
 
+import java.math.BigDecimal;
+
 import com.blogspot.toomuchcoding.frauddetection.model.FraudCheck;
 import com.blogspot.toomuchcoding.frauddetection.model.FraudCheckResult;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.math.BigDecimal;
 
 import static com.blogspot.toomuchcoding.frauddetection.model.FraudCheckStatus.FRAUD;
 import static com.blogspot.toomuchcoding.frauddetection.model.FraudCheckStatus.OK;
