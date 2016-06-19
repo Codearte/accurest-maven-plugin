@@ -12,9 +12,9 @@
         </server>
     </servers>
 
-    <activeProfiles>
+    <!--<activeProfiles>
         <activeProfile>release</activeProfile>
-    </activeProfiles>
+    </activeProfiles>-->
 
     <profiles>
         <profile>

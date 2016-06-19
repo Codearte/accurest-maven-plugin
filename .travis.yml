@@ -3,7 +3,3 @@ jdk:
 - oraclejdk8
 script:
 - ./mvnw clean test jacoco:report coveralls:report
-cache:
-  directories:
-  - ~/.m2/repository
-  - ~/.m2/wrapper
